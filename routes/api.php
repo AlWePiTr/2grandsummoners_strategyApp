@@ -1,6 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TestController;
+use App\Http\Controllers\PostsController;
 
-Route::apiResource('/post', postController::class);
+Route::apiResource('/post', PostsController::class);

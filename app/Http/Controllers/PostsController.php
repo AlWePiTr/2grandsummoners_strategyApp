@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\post;
+use App\Models\posts;
 use Illuminate\Http\Request;
 
-class postcontroller extends Controller
+class PostsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,10 +42,10 @@ class postcontroller extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\post  $post
+     * @param  \App\Models\posts  $posts
      * @return \Illuminate\Http\Response
      */
-    public function show(post $post)
+    public function show(posts $posts)
     {
         $item = post::where('id', $post->id)->first();
         if ($item) {
@@ -64,16 +64,16 @@ class postcontroller extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\post  $post
+     * @param  \App\Models\posts  $posts
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, post $post)
+    public function update(Request $request, posts $posts)
     {
         $item = post::where('id', $post->id)->first();
         $item->content = $request->content;
         $item->posting_time = $request->posting_time;
         $item->save();
-        if($item) {
+        if ($item) {
             return response()->json([
                 'message' => 'Updated succesfully',
                 'data' => $item
@@ -82,16 +82,15 @@ class postcontroller extends Controller
             return response()->json([
                 'message' => 'Not found',
             ], 404);
-        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\post  $post
+     * @param  \App\Models\posts  $posts
      * @return \Illuminate\Http\Response
      */
-    public function destroy(post $post)
+    public function destroy(posts $posts)
     {
         $item = post::where('id', $post->id)->delete();
         if ($item) {
